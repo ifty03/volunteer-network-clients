@@ -1,5 +1,6 @@
 import React from "react";
 import { useForm } from "react-hook-form";
+import toast from "react-hot-toast";
 import logo from "../../media/logos/Group 1329.png";
 
 const AddEvents = () => {
@@ -15,7 +16,7 @@ const AddEvents = () => {
       headers: { "Content-type": "application/json" },
       body: JSON.stringify(data),
     });
-    console.log(data);
+    toast.success("Successfully event added!");
   };
   return (
     <div className="bg-violet-100 py-8 w-72 mx-auto rounded-lg mt-8">

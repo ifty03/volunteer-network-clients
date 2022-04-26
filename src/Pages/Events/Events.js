@@ -8,12 +8,12 @@ const Events = () => {
       .then((res) => res.json())
       .then((data) => setEvents(data));
   }, []);
-  console.log(events);
+
   return (
     <div>
       <div className="grid lg:grid-cols-4 md:grid-cols-2 grid-cols-1 gap-5 md:mx-20 mt-10">
         {events.map((event) => (
-          <Event key={event._id} event={event}></Event>
+          <Event key={event._id} setEvents={setEvents} event={event}></Event>
         ))}
       </div>
     </div>

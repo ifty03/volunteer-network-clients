@@ -1,3 +1,4 @@
+import { Toaster } from "react-hot-toast";
 import { Route, Routes } from "react-router-dom";
 import "./App.css";
 import AddEvents from "./Pages/AddEvents/AddEvents";
@@ -19,6 +20,7 @@ function App() {
         <Route path="/blogs" element={<Blogs></Blogs>}></Route>
         <Route path="/addEvents" element={<AddEvents></AddEvents>}></Route>
       </Routes>
+      <Toaster />
     </div>
   );
 }
