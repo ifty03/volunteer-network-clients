@@ -92,9 +92,12 @@ const Header = () => {
               Sign in
             </Link>
           )}
-          <button className="self-center px-8 py-3 font-semibold rounded dark:bg-violet-400 dark:text-coolGray-900">
+          <Link
+            to="/signUp"
+            className="self-center px-8 py-3 font-semibold rounded dark:bg-violet-400 dark:text-coolGray-900"
+          >
             Sign up
-          </button>
+          </Link>
         </div>
         <button className="p-4 lg:hidden">
           <svg

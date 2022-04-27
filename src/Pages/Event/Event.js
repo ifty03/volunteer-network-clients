@@ -13,7 +13,7 @@ const Event = ({ event, setEvents, events, id }) => {
   const handelDeleteEvent = async (id) => {
     const agree = window.confirm("are you sure delete event");
     if (agree) {
-      await fetch(`http://localhost:5000/delete/${id}`, {
+      await fetch(`https://arcane-reaches-95642.herokuapp.com/delete/${id}`, {
         method: "DELETE",
       })
         .then((res) => res.json())
@@ -33,7 +33,7 @@ const Event = ({ event, setEvents, events, id }) => {
   console.log(id);
   const onSubmit = (data) => {
     console.log(data);
-    fetch(`http://localhost:5000/update/${id}`, {
+    fetch(`https://arcane-reaches-95642.herokuapp.com/update/${id}`, {
       method: "PUT",
       headers: { "Content-type": "application/json" },
       body: JSON.stringify(data),
@@ -45,7 +45,7 @@ const Event = ({ event, setEvents, events, id }) => {
   };
   const addDonation = (name, img, date) => {
     const event = { name, img, date };
-    fetch("http://localhost:5000/donation", {
+    fetch("https://arcane-reaches-95642.herokuapp.com/donation", {
       method: "POST",
       headers: { "Content-type": "application/json" },
       body: JSON.stringify(event),

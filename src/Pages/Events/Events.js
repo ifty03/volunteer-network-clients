@@ -9,7 +9,7 @@ const Events = () => {
   const [total, setTotal] = useState(0);
   console.log(count);
   useEffect(() => {
-    fetch("http://localhost:5000/totalEvents")
+    fetch("https://arcane-reaches-95642.herokuapp.com/totalEvents")
       .then((res) => res.json())
       .then((data) => {
         const totalEvent = data?.count;
@@ -18,7 +18,9 @@ const Events = () => {
       });
   }, []);
   useEffect(() => {
-    fetch(`http://localhost:5000/events?page=${page}&count=${count}`)
+    fetch(
+      `https://arcane-reaches-95642.herokuapp.com/events?page=${page}&count=${count}`
+    )
       .then((res) => res.json())
       .then((data) => setEvents(data));
   }, [page, count]);

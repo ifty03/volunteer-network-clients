@@ -11,7 +11,7 @@ const AddEvents = () => {
     formState: { errors },
   } = useForm();
   const onSubmit = (data) => {
-    fetch("http://localhost:5000/addEvent", {
+    fetch("https://arcane-reaches-95642.herokuapp.com/addEvent", {
       method: "POST",
       headers: { "Content-type": "application/json" },
       body: JSON.stringify(data),
