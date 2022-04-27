@@ -1,15 +1,38 @@
 import React from "react";
+import toast from "react-hot-toast";
 import { Link } from "react-router-dom";
+import {
+  useCreateUserWithEmailAndPassword,
+  useSendEmailVerification,
+} from "react-firebase-hooks/auth";
+import auth from "../../firebase.init";
 import logo from "../../media/logos/Group 1329.png";
+import { async } from "@firebase/util";
 
 const SignUP = () => {
-  const handelSignUP = (e) => {
+  /* all states */
+  const [createUserWithEmailAndPassword, user, loading, error] =
+    useCreateUserWithEmailAndPassword(auth);
+  /* email varifyction */
+  const [sendEmailVerification, sending] = useSendEmailVerification(auth);
+  const handelSignUP = async (e) => {
     e.preventDefault();
     const email = e.target.email.value;
     const password = e.target.password.value;
     const confirmPassword = e.target.confirmPassword.value;
-    if (password === confirmPassword) {
-      console.log(confirmPassword, password, email);
+    const check = e.target.check.checked;
+    if (check) {
+      if (password === confirmPassword) {
+        await createUserWithEmailAndPassword(email, password);
+        sendEmailVerification();
+        console.log(confirmPassword, password, email);
+        e.target.reset();
+        toast.success("Successfully user created");
+      } else {
+        toast.error("password are not same");
+      }
+    } else {
+      toast.error("Accept all trams and conditions ");
     }
   };
   return (
@@ -114,6 +137,7 @@ const SignUP = () => {
             <div class="form-group form-check">
               <input
                 type="checkbox"
+                name="check"
                 class="form-check-input appearance-none h-4 w-4 border border-gray-300 rounded-sm bg-white checked:bg-violet-600 checked:border-violet-600 focus:outline-none transition duration-200 mt-1 align-top bg-no-repeat bg-center bg-contain float-left mr-2 cursor-pointer"
                 id="exampleCheck2"
               />

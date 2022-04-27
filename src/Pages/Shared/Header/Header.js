@@ -1,12 +1,17 @@
 import React from "react";
 import logo from "../../../media/logos/Group 1329.png";
 import { Link, NavLink } from "react-router-dom";
+import { useAuthState } from "react-firebase-hooks/auth";
+import auth from "../../../firebase.init";
+import { signOut } from "firebase/auth";
+import toast from "react-hot-toast";
 
 const Header = () => {
+  const [user] = useAuthState(auth);
   return (
     <header className="p-4 dark:bg-coolGray-800 dark:text-coolGray-100">
       <div className="container flex justify-between h-16 mx-auto">
-        <NavLink to="/" className="flex items-center p-2">
+        <NavLink to="/home" className="flex items-center p-2">
           <img className="h-10" src={logo} alt="this is logo" />
         </NavLink>
         <ul className="items-stretch hidden space-x-3 lg:flex">
@@ -24,7 +29,7 @@ const Header = () => {
           </li>
           <li className="flex">
             <NavLink
-              to="/donation"
+              to="/donations"
               className={({ isActive }) =>
                 isActive
                   ? "flex items-center px-4 -mb-1 border-b-2 dark:border-transparent dark:text-violet-400 dark:border-violet-400"
@@ -72,9 +77,21 @@ const Header = () => {
           </li>
         </ul>
         <div className="items-center flex-shrink-0 hidden lg:flex">
-          <Link to="/login" className="self-center px-8 py-3 rounded">
-            Sign in
-          </Link>
+          {user ? (
+            <button
+              onClick={async () => {
+                await signOut(auth);
+                toast.success("sign out success");
+              }}
+              className="md:mr-3"
+            >
+              Sign Out
+            </button>
+          ) : (
+            <Link to="/login" className="self-center px-8 py-3 rounded">
+              Sign in
+            </Link>
+          )}
           <button className="self-center px-8 py-3 font-semibold rounded dark:bg-violet-400 dark:text-coolGray-900">
             Sign up
           </button>

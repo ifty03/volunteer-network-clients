@@ -3,7 +3,7 @@ import { Route, Routes } from "react-router-dom";
 import "./App.css";
 import AddEvents from "./Pages/AddEvents/AddEvents";
 import Blogs from "./Pages/Blogs/Blogs";
-import Donation from "./Pages/Donation/Donation";
+import Donations from "./Pages/Donations/Donations";
 import Events from "./Pages/Events/Events";
 import Home from "./Pages/Home/Home";
 import Login from "./Pages/Login/Login";
@@ -17,7 +17,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Home></Home>}></Route>
         <Route path="/home" element={<Home></Home>}></Route>
-        <Route path="/donation" element={<Donation></Donation>}></Route>
+        <Route path="/donations" element={<Donations></Donations>}></Route>
         <Route path="/events" element={<Events></Events>}></Route>
         <Route path="/blogs" element={<Blogs></Blogs>}></Route>
         <Route path="/login" element={<Login></Login>}></Route>

@@ -35,6 +35,7 @@ const Events = () => {
             setEvents={setEvents}
             events={events}
             event={event}
+            id={event._id}
           ></Event>
         ))}
       </div>

@@ -1,13 +1,27 @@
+import { async } from "@firebase/util";
 import React from "react";
+import {
+  useAuthState,
+  useSignInWithEmailAndPassword,
+} from "react-firebase-hooks/auth";
+import toast from "react-hot-toast";
 import { Link } from "react-router-dom";
+import auth from "../../firebase.init";
 import logo from "../../media/logos/Group 1329.png";
 
 const Login = () => {
-  const handelLogin = (e) => {
+  const [currentUser] = useAuthState(auth);
+  const [signInWithEmailAndPassword, user, loading, error] =
+    useSignInWithEmailAndPassword(auth);
+  const handelLogin = async (e) => {
     e.preventDefault();
     const email = e.target.email.value;
     const password = e.target.password.value;
-    console.log(email, password);
+    await signInWithEmailAndPassword(email, password);
+    if (currentUser) {
+      toast.success("Login Successfully");
+    }
+    e.target.reset();
   };
   return (
     <div>
@@ -78,6 +92,7 @@ const Login = () => {
               id="exampleInputPassword2"
               placeholder="Password"
             />
+            <p className="text-red-500">{error?.message}</p>
           </div>
           <div class="flex justify-between items-center mb-6">
             <div class="form-group form-check">
@@ -121,7 +136,7 @@ const Login = () => {
       duration-150
       ease-in-out"
             type="submit"
-            value="Sign Up"
+            value="Sign In"
           />
 
           <p class="text-gray-800 mt-6 text-center">

@@ -3,13 +3,13 @@ import { FiUploadCloud } from "react-icons/fi";
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
 import logo from "../../media/logos/Group 1329.png";
-import useEvents from "../../Hook/useEvents";
+
 import { useState } from "react";
 
-const Event = ({ event, setEvents, events }) => {
+const Event = ({ event, setEvents, events, id }) => {
   const { img, name, date, _id } = event;
   const [updateId, setUpdateId] = useState("");
-  console.log(updateId);
+
   const handelDeleteEvent = async (id) => {
     const agree = window.confirm("are you sure delete event");
     if (agree) {
@@ -30,8 +30,10 @@ const Event = ({ event, setEvents, events }) => {
     watch,
     formState: { errors },
   } = useForm();
+  console.log(id);
   const onSubmit = (data) => {
-    fetch(`http://localhost:5000/update/${_id}`, {
+    console.log(data);
+    fetch(`http://localhost:5000/update/${id}`, {
       method: "PUT",
       headers: { "Content-type": "application/json" },
       body: JSON.stringify(data),
@@ -40,6 +42,15 @@ const Event = ({ event, setEvents, events }) => {
       .then((data) => console.log(data));
     toast.success("Successfully event updated!");
     console.log("This is id:", _id);
+  };
+  const addDonation = (name, img, date) => {
+    const event = { name, img, date };
+    fetch("http://localhost:5000/donation", {
+      method: "POST",
+      headers: { "Content-type": "application/json" },
+      body: JSON.stringify(event),
+    });
+    console.log(event);
   };
   return (
     <div>
@@ -64,6 +75,9 @@ const Event = ({ event, setEvents, events }) => {
         </div>
         <div className="flex flex-col justify-between">
           <button
+            onClick={() => {
+              addDonation(name, img, date);
+            }}
             type="button"
             className="flex items-center justify-center w-full py-6 p-3 font-semibold tracking-wide  bg-violet-600 text-white text-xl hover:bg-violet-700"
           >
