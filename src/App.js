@@ -7,12 +7,13 @@ import Donations from "./Pages/Donations/Donations";
 import Events from "./Pages/Events/Events";
 import Home from "./Pages/Home/Home";
 import Login from "./Pages/Login/Login";
+import RegisterList from "./Pages/RegisterList/RegisterList";
 import Header from "./Pages/Shared/Header/Header";
 import SignUP from "./Pages/SignUp/SignUP";
 
 function App() {
   return (
-    <div>
+    <div className="">
       <Header></Header>
       <Routes>
         <Route path="/" element={<Home></Home>}></Route>
@@ -20,6 +21,10 @@ function App() {
         <Route path="/donations" element={<Donations></Donations>}></Route>
         <Route path="/events" element={<Events></Events>}></Route>
         <Route path="/blogs" element={<Blogs></Blogs>}></Route>
+        <Route
+          path="/registerList"
+          element={<RegisterList></RegisterList>}
+        ></Route>
         <Route path="/login" element={<Login></Login>}></Route>
         <Route path="/signUP" element={<SignUP></SignUP>}></Route>
         <Route path="/addEvents" element={<AddEvents></AddEvents>}></Route>

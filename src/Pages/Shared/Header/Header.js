@@ -9,7 +9,7 @@ import toast from "react-hot-toast";
 const Header = () => {
   const [user] = useAuthState(auth);
   return (
-    <header className="p-4 dark:bg-coolGray-800 dark:text-coolGray-100">
+    <header className="p-4  sticky top-0 bg-gray-100">
       <div className="container flex justify-between h-16 mx-auto">
         <NavLink to="/home" className="flex items-center p-2">
           <img className="h-10" src={logo} alt="this is logo" />
@@ -75,6 +75,20 @@ const Header = () => {
               Add Events
             </NavLink>
           </li>
+          {user && (
+            <li className="flex">
+              <NavLink
+                to="/registerList"
+                className={({ isActive }) =>
+                  isActive
+                    ? "flex items-center px-4 -mb-1 border-b-2 dark:border-transparent dark:text-violet-400 dark:border-violet-400"
+                    : "flex items-center px-4 -mb-1 border-b-2 dark:border-transparent"
+                }
+              >
+                Register List
+              </NavLink>
+            </li>
+          )}
         </ul>
         <div className="items-center flex-shrink-0 hidden lg:flex">
           {user ? (
