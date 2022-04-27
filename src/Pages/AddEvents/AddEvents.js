@@ -25,9 +25,12 @@ const AddEvents = () => {
         <input
           className="w-60 h-10 my-2 rounded-lg pl-4"
           placeholder="name"
-          {...register("name")}
+          {...register("name", { required: true })}
         />
         <br />
+        {errors.name && (
+          <span className="text-red-500">This field is required</span>
+        )}
 
         <input
           className="w-60 h-10 my-2 rounded-lg  pl-4"
@@ -35,6 +38,9 @@ const AddEvents = () => {
           {...register("date", { required: true })}
         />
         <br />
+        {errors.date && (
+          <span className="text-red-500">This field is required</span>
+        )}
         <input
           className="w-60 h-10 my-2 rounded-lg  pl-4"
           placeholder="image url"
@@ -42,7 +48,7 @@ const AddEvents = () => {
         />
         <br />
 
-        {errors.exampleRequired && (
+        {errors.img && (
           <span className="text-red-500">This field is required</span>
         )}
 
