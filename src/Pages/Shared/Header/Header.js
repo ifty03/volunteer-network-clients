@@ -1,6 +1,6 @@
 import React from "react";
 import logo from "../../../media/logos/Group 1329.png";
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 
 const Header = () => {
   return (
@@ -72,7 +72,9 @@ const Header = () => {
           </li>
         </ul>
         <div className="items-center flex-shrink-0 hidden lg:flex">
-          <button className="self-center px-8 py-3 rounded">Sign in</button>
+          <Link to="/login" className="self-center px-8 py-3 rounded">
+            Sign in
+          </Link>
           <button className="self-center px-8 py-3 font-semibold rounded dark:bg-violet-400 dark:text-coolGray-900">
             Sign up
           </button>

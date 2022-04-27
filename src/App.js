@@ -6,7 +6,9 @@ import Blogs from "./Pages/Blogs/Blogs";
 import Donation from "./Pages/Donation/Donation";
 import Events from "./Pages/Events/Events";
 import Home from "./Pages/Home/Home";
+import Login from "./Pages/Login/Login";
 import Header from "./Pages/Shared/Header/Header";
+import SignUP from "./Pages/SignUp/SignUP";
 
 function App() {
   return (
@@ -18,6 +20,8 @@ function App() {
         <Route path="/donation" element={<Donation></Donation>}></Route>
         <Route path="/events" element={<Events></Events>}></Route>
         <Route path="/blogs" element={<Blogs></Blogs>}></Route>
+        <Route path="/login" element={<Login></Login>}></Route>
+        <Route path="/signUP" element={<SignUP></SignUP>}></Route>
         <Route path="/addEvents" element={<AddEvents></AddEvents>}></Route>
       </Routes>
       <Toaster />
