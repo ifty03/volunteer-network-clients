@@ -37,7 +37,7 @@ const SignUP = () => {
   };
   return (
     <div>
-      <div class="block mb-8 p-6 lg:w-2/6 md:w-4/6 w-5/6 mx-auto rounded-lg shadow-lg bg-white max-w-sm">
+      <div className="block mb-8 p-6 lg:w-2/6 md:w-4/6 w-5/6 mx-auto rounded-lg shadow-lg bg-white max-w-sm">
         <div>
           <img className="w-24 mx-auto mb-4" src={logo} alt="" />
           <h1 className="text-3xl mb-4 font-semibold text-violet-600 text-center">
@@ -45,10 +45,10 @@ const SignUP = () => {
           </h1>
         </div>
         <form onSubmit={handelSignUP}>
-          <div class="form-group mb-6">
+          <div className="form-group mb-6">
             <label
-              for="exampleInputEmail2"
-              class="form-label inline-block mb-2 text-gray-700"
+              htmlFor="exampleInputEmail2"
+              className="form-label inline-block mb-2 text-gray-700"
             >
               Email address
             </label>
@@ -56,7 +56,7 @@ const SignUP = () => {
               type="email"
               name="email"
               required
-              class="form-control
+              className="form-control
       block
       w-full
       px-3
@@ -76,10 +76,10 @@ const SignUP = () => {
               placeholder="Enter email"
             />
           </div>
-          <div class="form-group mb-6">
+          <div className="form-group mb-6">
             <label
-              for="exampleInputPassword2"
-              class="form-label inline-block mb-2 text-gray-700"
+              htmlFor="exampleInputPassword2"
+              className="form-label inline-block mb-2 text-gray-700"
             >
               Password
             </label>
@@ -87,7 +87,7 @@ const SignUP = () => {
               type="password"
               name="password"
               required
-              class="form-control block
+              className="form-control block
       w-full
       px-3
       py-1.5
@@ -105,8 +105,8 @@ const SignUP = () => {
               placeholder="Password"
             />
             <label
-              for="exampleInputPassword2"
-              class="form-label mt-4 inline-block mb-2 text-gray-700"
+              htmlFor="exampleInputPassword2"
+              className="form-label mt-4 inline-block mb-2 text-gray-700"
             >
               Confirm Password
             </label>
@@ -114,7 +114,7 @@ const SignUP = () => {
               type="password"
               name="confirmPassword"
               required
-              class="form-control block
+              className="form-control block
               mt-1
       w-full
       px-3
@@ -133,24 +133,24 @@ const SignUP = () => {
               placeholder="confirm password"
             />
           </div>
-          <div class="flex justify-between items-center mb-6">
-            <div class="form-group form-check">
+          <div className="flex justify-between items-center mb-6">
+            <div className="form-group form-check">
               <input
                 type="checkbox"
                 name="check"
-                class="form-check-input appearance-none h-4 w-4 border border-gray-300 rounded-sm bg-white checked:bg-violet-600 checked:border-violet-600 focus:outline-none transition duration-200 mt-1 align-top bg-no-repeat bg-center bg-contain float-left mr-2 cursor-pointer"
+                className="form-check-input appearance-none h-4 w-4 border border-gray-300 rounded-sm bg-white checked:bg-violet-600 checked:border-violet-600 focus:outline-none transition duration-200 mt-1 align-top bg-no-repeat bg-center bg-contain float-left mr-2 cursor-pointer"
                 id="exampleCheck2"
               />
               <label
-                class="form-check-label inline-block text-gray-800"
-                for="exampleCheck2"
+                className="form-check-label inline-block text-gray-800"
+                htmlFor="exampleCheck2"
               >
                 Accept all trams & conditions
               </label>
             </div>
           </div>
           <input
-            class="
+            className="
           cursor-pointer
     w-full
     px-6
@@ -173,11 +173,11 @@ const SignUP = () => {
             value="Sign Up"
           />
 
-          <p class="text-gray-800 mt-6 text-center">
+          <p className="text-gray-800 mt-6 text-center">
             Already have an account?{" "}
             <Link
               to="/login"
-              class="text-violet-600 hover:text-violet-700 focus:text-violet-700 transition duration-200 ease-in-out"
+              className="text-violet-600 hover:text-violet-700 focus:text-violet-700 transition duration-200 ease-in-out"
             >
               Login
             </Link>

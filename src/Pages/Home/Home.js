@@ -12,8 +12,6 @@ import img9 from "../../media/images/extraVolunteer.png";
 import img10 from "../../media/images/ITHelp.png";
 
 const Home = () => {
-  const [events, setEvents] = useEvents();
-  console.log(events);
   return (
     <div>
       <section className="py-6 bg-coolGray-100 text-coolGray-900">

@@ -10,6 +10,7 @@ import Login from "./Pages/Login/Login";
 import RegisterList from "./Pages/RegisterList/RegisterList";
 import Header from "./Pages/Shared/Header/Header";
 import SignUP from "./Pages/SignUp/SignUP";
+import RequireAuth from "./RequireAuth/RequireAuth";
 
 function App() {
   return (
@@ -18,7 +19,14 @@ function App() {
       <Routes>
         <Route path="/" element={<Home></Home>}></Route>
         <Route path="/home" element={<Home></Home>}></Route>
-        <Route path="/donations" element={<Donations></Donations>}></Route>
+        <Route
+          path="/donations"
+          element={
+            <RequireAuth>
+              <Donations></Donations>
+            </RequireAuth>
+          }
+        ></Route>
         <Route path="/events" element={<Events></Events>}></Route>
         <Route path="/blogs" element={<Blogs></Blogs>}></Route>
         <Route

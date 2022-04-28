@@ -1,18 +1,32 @@
 import { async } from "@firebase/util";
-import React from "react";
+import React, { useState } from "react";
 import {
   useAuthState,
+  useSendPasswordResetEmail,
   useSignInWithEmailAndPassword,
 } from "react-firebase-hooks/auth";
 import toast from "react-hot-toast";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import auth from "../../firebase.init";
 import logo from "../../media/logos/Group 1329.png";
+import Social from "../Shared/Social/Social";
 
 const Login = () => {
+  /* check authintication */
+
   const [currentUser] = useAuthState(auth);
+  let navigate = useNavigate();
+  let location = useLocation();
+  let from = location.state?.from?.pathname || "/";
+
+  if (currentUser) {
+    navigate(from, { replace: true });
+  }
+
+  const [email, setEmail] = useState("");
   const [signInWithEmailAndPassword, user, loading, error] =
     useSignInWithEmailAndPassword(auth);
+  const [sendPasswordResetEmail, sending] = useSendPasswordResetEmail(auth);
   const handelLogin = async (e) => {
     e.preventDefault();
     const email = e.target.email.value;
@@ -23,9 +37,10 @@ const Login = () => {
     }
     e.target.reset();
   };
+
   return (
     <div>
-      <div class="block mb-8 p-6 lg:w-2/6 md:w-4/6 w-5/6 mx-auto rounded-lg shadow-lg bg-white max-w-sm">
+      <div className="block mb-8 p-6 lg:w-2/6 md:w-4/6 w-5/6 mx-auto rounded-lg shadow-lg bg-white max-w-sm">
         <div>
           <img className="w-24 mx-auto mb-4" src={logo} alt="" />
           <h1 className="text-3xl mb-4 font-semibold text-violet-600 text-center">
@@ -33,18 +48,19 @@ const Login = () => {
           </h1>
         </div>
         <form onSubmit={handelLogin}>
-          <div class="form-group mb-6">
+          <div className="form-group mb-6">
             <label
-              for="exampleInputEmail2"
-              class="form-label inline-block mb-2 text-gray-700"
+              htmlFor="exampleInputEmail2"
+              className="form-label inline-block mb-2 text-gray-700"
             >
               Email address
             </label>
             <input
               type="email"
               name="email"
+              onBlur={(e) => setEmail(e.target.value)}
               required
-              class="form-control
+              className="form-control
         block
         w-full
         px-3
@@ -64,10 +80,10 @@ const Login = () => {
               placeholder="Enter email"
             />
           </div>
-          <div class="form-group mb-6">
+          <div className="form-group mb-6">
             <label
-              for="exampleInputPassword2"
-              class="form-label inline-block mb-2 text-gray-700"
+              htmlFor="exampleInputPassword2"
+              className="form-label inline-block mb-2 text-gray-700"
             >
               Password
             </label>
@@ -75,7 +91,7 @@ const Login = () => {
               type="password"
               required
               name="password"
-              class="form-control block
+              className="form-control block
         w-full
         px-3
         py-1.5
@@ -94,29 +110,36 @@ const Login = () => {
             />
             <p className="text-red-500">{error?.message}</p>
           </div>
-          <div class="flex justify-between items-center mb-6">
-            <div class="form-group form-check">
+          <div className="flex justify-between items-center mb-6">
+            <div className="form-group form-check">
               <input
                 type="checkbox"
-                class="form-check-input appearance-none h-4 w-4 border border-gray-300 rounded-sm bg-white checked:bg-violet-600 checked:border-violet-600 focus:outline-none transition duration-200 mt-1 align-top bg-no-repeat bg-center bg-contain float-left mr-2 cursor-pointer"
+                className="form-check-input appearance-none h-4 w-4 border border-gray-300 rounded-sm bg-white checked:bg-violet-600 checked:border-violet-600 focus:outline-none transition duration-200 mt-1 align-top bg-no-repeat bg-center bg-contain float-left mr-2 cursor-pointer"
                 id="exampleCheck2"
               />
               <label
-                class="form-check-label inline-block text-gray-800"
-                for="exampleCheck2"
+                className="form-check-label inline-block text-gray-800"
+                htmlFor="exampleCheck2"
               >
                 Remember me
               </label>
             </div>
-            <a
-              href="#!"
-              class="text-violet-600 hover:text-violet-700 focus:text-violet-700 transition duration-200 ease-in-out"
+            <p
+              onClick={async () => {
+                if (email) {
+                  await sendPasswordResetEmail(email);
+                  toast.success("Resat email Sent ");
+                } else {
+                  toast.error("an email must be use");
+                }
+              }}
+              className="text-violet-600 cursor-pointer hover:text-violet-700 focus:text-violet-700 "
             >
               Forgot password?
-            </a>
+            </p>
           </div>
           <input
-            class="
+            className="
             cursor-pointer
       w-full
       px-6
@@ -139,16 +162,19 @@ const Login = () => {
             value="Sign In"
           />
 
-          <p class="text-gray-800 mt-6 text-center">
+          <p className="text-gray-800 mt-6 text-center">
             Not a member?{" "}
             <Link
               to="/signUp"
-              class="text-violet-600 hover:text-violet-700 focus:text-violet-700 transition duration-200 ease-in-out"
+              className="text-violet-600 hover:text-violet-700 focus:text-violet-700 transition duration-200 ease-in-out"
             >
               Register
             </Link>
           </p>
         </form>
+        <div>
+          <Social></Social>
+        </div>
       </div>
     </div>
   );
