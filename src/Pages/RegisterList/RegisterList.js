@@ -10,7 +10,6 @@ import auth from "../../firebase.init";
 const RegisterList = () => {
   const [user] = useAuthState(auth);
   const [events] = useEvents();
-  console.log(events);
 
   return (
     <div
@@ -49,7 +48,7 @@ const RegisterList = () => {
             </div>
             <div className="">
               {events.map((e) => (
-                <div className="grid grid-cols-4 my-3  text-left">
+                <div key={e._id} className="grid grid-cols-4 my-3  text-left">
                   <p className="mx-auto">{e.name}</p>
                   <p className="mx-auto">
                     {user?.email || "youremail@gmail.com"}

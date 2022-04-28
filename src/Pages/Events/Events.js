@@ -7,7 +7,7 @@ const Events = () => {
   const [page, setPage] = useState(0);
   const [count, setCount] = useState(5);
   const [total, setTotal] = useState(0);
-  console.log(count);
+
   useEffect(() => {
     fetch("https://arcane-reaches-95642.herokuapp.com/totalEvents")
       .then((res) => res.json())

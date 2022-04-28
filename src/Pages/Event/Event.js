@@ -30,7 +30,7 @@ const Event = ({ event, setEvents, events, id }) => {
     watch,
     formState: { errors },
   } = useForm();
-  console.log(id);
+
   const onSubmit = (data) => {
     console.log(data);
     fetch(`https://arcane-reaches-95642.herokuapp.com/update/${id}`, {
